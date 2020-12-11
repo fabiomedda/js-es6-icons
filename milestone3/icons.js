@@ -110,22 +110,41 @@ $(document).ready(function () {
   let selectTypeValue = selectType.value;
   console.log(selectTypeValue);
 
+  
   selectType.addEventListener("click", function () { 
-    let ciao = this.value;
-    change(ciao);
+    let valueChange = this.value;
+    change(valueChange);
   });
+  
 
   function change(value) { 
     console.log(value); 
 
     if (value === "animals") {
-      divClass.outerHTML = "";
-      console.log(divClass);
+      let divClassDiv = $(".icons > div");
+      divClassDiv.remove();
+      console.log(divClassDiv);
       printType(iconsAnimals, divClass);
+    } else if (value === "vegetable"){
+      let divClassDiv = $(".icons > div");
+      divClassDiv.remove();
+      console.log(divClassDiv);
+      printType(iconsVegetable, divClass);
+    } else if (value === "user") {
+      let divClassDiv = $(".icons > div");
+      divClassDiv.remove();
+      console.log(divClassDiv);
+      printType(iconsUser, divClass);
+    } else {
+      let divClassDiv = $(".icons > div");
+      divClassDiv.remove();
+      console.log(divClassDiv);
+      printType(newIcons, divClass);
     }
+
   };
 
-  change(selectTypeValue);
+  //change(selectTypeValue);
 
 
 /* ---- FUNCTIONS ----*/
