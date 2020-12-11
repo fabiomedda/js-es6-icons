@@ -70,10 +70,10 @@ $(document).ready(function () {
 
       box.append(markup);
 
-      });
-    }
+    });
+  }
 
-  });
+});
 
 
 /* ---- FUNCTIONS ----*/
