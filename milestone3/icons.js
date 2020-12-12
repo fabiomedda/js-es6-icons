@@ -1,6 +1,6 @@
 $(document).ready(function () {
+  // esercizio completato senza controllare la spiegazione e aiuti 😁
   // icone come da milestone 1
-
   class icon {
     constructor (name, prefix, type, family){
       this.name = name;
@@ -52,26 +52,11 @@ $(document).ready(function () {
   });
   console.log(newIcons);
 
-  const divClass = $(".icons");
+  const divIcons = $(".icons");
 
   //inseriamo le icone nel container come da milestone 2
 
-  printType(newIcons, divClass);
-
-  function printType(array, box) {
-    array.forEach(icon => {
-    
-      const markup = `
-        <div>
-          <i class="${icon.prefix} ${icon.type}" style="color: ${icon.color}"></i>
-          <div class="title" style="text-transform: uppercase">${icon.name}</div>
-        </div>
-      `;
-
-      box.append(markup);
-
-    });
-  }
+  printType(newIcons, divIcons);
 
   //estrapoliamo i tipi di icone
 
@@ -106,47 +91,53 @@ $(document).ready(function () {
 
   //al change mostriamo solo le icone filtrate
   //mostriamo come passare un parametro a change e contemporaneamente destrutturiamo
-
-  let selectTypeValue = selectType.value;
-  console.log(selectTypeValue);
-
   
-  selectType.addEventListener("click", function () { 
+  selectType.addEventListener("change", function () { 
     let valueChange = this.value;
     change(valueChange);
   });
   
 
-  function change(value) { 
-    console.log(value); 
-
-    if (value === "animals") {
-      let divClassDiv = $(".icons > div");
-      divClassDiv.remove();
-      console.log(divClassDiv);
-      printType(iconsAnimals, divClass);
-    } else if (value === "vegetable"){
-      let divClassDiv = $(".icons > div");
-      divClassDiv.remove();
-      console.log(divClassDiv);
-      printType(iconsVegetable, divClass);
-    } else if (value === "user") {
-      let divClassDiv = $(".icons > div");
-      divClassDiv.remove();
-      console.log(divClassDiv);
-      printType(iconsUser, divClass);
-    } else {
-      let divClassDiv = $(".icons > div");
-      divClassDiv.remove();
-      console.log(divClassDiv);
-      printType(newIcons, divClass);
-    }
-
-  };
-
-  //change(selectTypeValue);
-
+  
 
 /* ---- FUNCTIONS ----*/
+
+  /**
+   * ## Funzione per inserire le icone
+   * @param {array} array array di icone da inserire 
+   * @param {box} container box o container dove inserire le icone
+   */
+  function printType(array, box) {
+    array.forEach(icon => {
+      const markup = `
+        <div>
+          <i class="${icon.prefix} ${icon.type}" style="color: ${icon.color}"></i>
+          <div class="title" style="text-transform: uppercase">${icon.name}</div>
+        </div>
+      `;
+      box.append(markup);
+    });
+  }
+
+  /**
+   * ## funzione per rimuovere le icone e inserire le icone filtrate
+   * @param {value} value valore che cambia al change per filtrare
+   */
+  function change(value) { 
+    const divIconsDiv = $(".icons > div");
+    if (value === "animals") {
+      divIconsDiv.remove();
+      printType(iconsAnimals, divIcons);
+    } else if (value === "vegetable"){
+      divIconsDiv.remove();
+      printType(iconsVegetable, divIcons);
+    } else if (value === "user") {
+      divIconsDiv.remove();
+      printType(iconsUser, divIcons);
+    } else {
+      divIconsDiv.remove();
+      printType(newIcons, divIcons);
+    }
+  };
 
 });
